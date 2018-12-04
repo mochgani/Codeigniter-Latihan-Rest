@@ -21,20 +21,20 @@ class Kontak extends REST_Controller {
             $this->db->where('id', $id);
             $kontak = $this->db->get('telepon')->result();
         }
-        $this->response($kontak, 200);
+        $this->response(array("result"=>$kontak,'status' => 200, 'message' => 'Data Terambil'));
     }
 
     //Mengirim atau menambah data kontak baru
     function index_post() {
         $data = array(
-                    'id'           => $this->post('id'),
+                    'id' => $this->post('id'),
                     'nama'          => $this->post('nama'),
                     'nomor'    => $this->post('nomor'));
         $insert = $this->db->insert('telepon', $data);
         if ($insert) {
-            $this->response($data, 200);
+            $this->response(array('status' => 200, 'message' => 'Kontak Berhasil Disimpan'));
         } else {
-            $this->response(array('status' => 'fail', 502));
+            $this->response(array('status' => 502, 'message' => 'Kontak Gagal Disimpan!!!', ));
         }
     }
 
