@@ -9,13 +9,11 @@ class Kontak extends REST_Controller {
 
     function __construct($config = 'rest') {
         parent::__construct($config);
-        $this->load->database();
     }
 
     //Menampilkan data kontak
-    function index_get() {
-        $id = $this->get('id');
-        if ($id == '') {
+    function index_get($id="") {
+        if ($id == "") {
             $kontak = $this->db->get('telepon')->result();
         } else {
             $this->db->where('id', $id);
