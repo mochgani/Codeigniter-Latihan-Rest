@@ -46,9 +46,9 @@ class Kontak extends REST_Controller {
         $this->db->where('id', $id);
         $update = $this->db->update('telepon', $data);
         if ($update) {
-            $this->response($data, 200);
+            $this->response(array('status' => 200, 'message' => 'Kontak Berhasil Diubah'));
         } else {
-            $this->response(array('status' => 'fail', 502));
+            $this->response(array('status' => 502, 'message' => 'Kontak Gagal Diubah!!!'));
         }
     }
 
@@ -58,9 +58,9 @@ class Kontak extends REST_Controller {
         $this->db->where('id', $id);
         $delete = $this->db->delete('telepon');
         if ($delete) {
-            $this->response(array('status' => 'success'), 201);
+            $this->response(array('status' => 200, 'message' => 'Kontak Berhasil Dihapus'));
         } else {
-            $this->response(array('status' => 'fail', 502));
+            $this->response(array('status' => 502, 'message' => 'Kontak Gagal Dihapus!!!'));
         }
     }
 
